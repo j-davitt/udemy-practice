@@ -62,3 +62,28 @@ function same(arr1, arr2) {
     }
     return true;
 }
+
+function validAnagram(str1, str2) {
+    // if not same length return false
+    if (str1.length !== str2.length) {
+        return false;
+    }
+    let lookup = {};
+    // loop through first string and store frequency of values in object
+    for (let i = 0; i < str1.length; i++) {
+        let letter = str1[i];
+        // if letter exists in object, increment(pre-increment operator), otherwise set to 1
+        lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+    }
+    // loop through second string and compare values to object
+    for (let i = 0; i < str2.length; i++) {
+        let letter = str2[i];
+        // if letter doesn't exist in object or frequency is 0, return false
+        if (!lookup[letter]) {
+            return false;
+        } else {
+            lookup[letter] -= 1;
+        }
+    }
+    return true;
+}
